@@ -1,10 +1,10 @@
 # StarGAN-VC
 
-This repository provides an official PyTorch implementation for [StarGAN-VC](http://www.kecl.ntt.co.jp/people/kameoka.hirokazu/Demos/stargan-vc3/index.html).
+This repository provides an official PyTorch implementation for [StarGAN-VC](http://www.kecl.ntt.co.jp/people/kameoka.hirokazu/Demos/stargan-vc2/index.html).
 
 StarGAN-VC is a nonparallel many-to-many voice conversion (VC) method using star generative adversarial networks (StarGAN). The current version performs VC by first modifying the mel-spectrogram of input speech of an arbitrary speaker in accordance with a target speaker index, and then generating a waveform using the speaker-independent HifiGAN vocoder from the modified mel-spectrogram.
 
-Audio samples are available [here](http://www.kecl.ntt.co.jp/people/kameoka.hirokazu/Demos/stargan-vc3/index.html).
+Audio samples are available [here](http://www.kecl.ntt.co.jp/people/kameoka.hirokazu/Demos/stargan-vc2/index.html).
 
 ## Papers
 
