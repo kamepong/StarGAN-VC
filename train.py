@@ -140,8 +140,8 @@ def main():
     parser.add_argument('--gpu', '-g', type=int, default=-1, help='GPU ID (negative value indicates CPU)')
     parser.add_argument('-ddir', '--data_rootdir', type=str, default='./dump/arctic/norm_feat/train',
                         help='root data folder that contains the normalized features')
-    parser.add_argument('--epochs', '-epoch', default=2000, type=int, help='number of epochs to learn')
-    parser.add_argument('--snapshot', '-snap', default=200, type=int, help='snapshot interval')
+    parser.add_argument('--epochs', '-epoch', default=1000, type=int, help='number of epochs to learn')
+    parser.add_argument('--snapshot', '-snap', default=100, type=int, help='snapshot interval')
     parser.add_argument('--batch_size', '-batch', type=int, default=12, help='Batch size')
     parser.add_argument('--num_mels', '-nm', type=int, default=80, help='number of mel channels')
     parser.add_argument('--arch_type', '-arc', default='conv', type=str, help='generator architecture type (conv or rnn)')
