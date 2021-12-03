@@ -50,11 +50,6 @@ def audio_transform(wav_filepath, scaler, kwargs, device):
 
     return torch.tensor(melspec_norm[None]).to(device, dtype=torch.float)
 
-def make_onehot(clsidx, dim, device):
-    return torch.eye(dim)[clsidx].to(device)
-    #onehot = np.eye(dim, dtype=np.int)[clsidx]
-    #return torch.tensor(onehot).to(device, dtype=torch.float)
-
 def extract_num(s, p, ret=0):
     search = p.search(s)
     if search:

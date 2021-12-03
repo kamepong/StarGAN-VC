@@ -31,11 +31,6 @@ class Generator1(nn.Module):
     def __call__(self, xin, k_t, k_s=None):
         device = xin.device
         B, n_mels, n_frame_ = xin.shape
-        n_frame = math.ceil(n_frame_/4)*4
-        if n_frame > n_frame_:
-            padnum = n_frame - n_frame_
-            zeropad = torch.zeros(B,n_mels,padnum, requires_grad=True).to(device)
-            xin = torch.cat((xin,zeropad),dim=2)
 
         kk_t = k_t*torch.ones(B).to(device, dtype=torch.int64)
         trgspk_emb = self.eb1(kk_t)
@@ -69,8 +64,6 @@ class Generator1(nn.Module):
         out = self.le9(out)
         out = md.concat_dim1(out,trgspk_emb)
         out = self.le10(out)
-
-        out = out[:,:,0:n_frame_].clone()
 
         return out
 
@@ -157,13 +150,8 @@ class Discriminator1(nn.Module):
     def __call__(self, xin):
         device = xin.device
         B, n_mels, n_frame_ = xin.shape
-        n_frame = math.ceil(n_frame_/4)*4
-        if n_frame > n_frame_:
-            padnum = n_frame - n_frame_
-            zeropad = torch.zeros(B,n_mels,padnum, requires_grad=True).to(device)
-            out = torch.cat((xin,zeropad),dim=2)
-        else:
-            out = xin
+
+        out = xin
 
         out = self.do1(self.le1(out))
         out = self.do2(self.le2(out))

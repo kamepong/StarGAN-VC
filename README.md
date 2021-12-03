@@ -55,7 +55,8 @@ To run all stages for model training, execute:
 - Options:
 
   ```bash
-  -g: GPU device
+  -g: GPU device (default: -1)
+  #    -1 indicates CPU
   -a: Generator architecture type ("conv" or "rnn")
   #    conv: 1D fully convolutional network (default)
   #    rnn: Bidirectional long short-term memory network

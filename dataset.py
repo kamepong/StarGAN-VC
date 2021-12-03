@@ -52,6 +52,7 @@ def collate_fn(batch):
         for b in range(batchsize):
             if maxlen<melspec_list[s][b].shape[1]:
                 maxlen = melspec_list[s][b].shape[1]
+        maxlen = math.ceil(maxlen/4)*4
     
         X = np.zeros((batchsize,n_freq,maxlen))
         for b in range(batchsize):
