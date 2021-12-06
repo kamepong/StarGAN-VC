@@ -173,7 +173,11 @@ class StarGAN(nn.Module):
 
     def forward(self, x, k_t, k_s=None):
         device = x.device
-        return self.gen(x, k_t, k_s)
+        n_frame_ = x.shape[2]
+        n_frame = math.ceil(n_frame_/4)*4
+        if n_frame > n_frame_:
+            x = nn.ReplicationPad1d((0, n_frame-n_frame_))(x)
+        return self.gen(x, k_t, k_s)[:,:,0:n_frame_]
 
     def calc_advloss_g(self, df_adv_ss, df_adv_st, df_adv_tt, df_adv_ts):
         df_adv_ss = df_adv_ss.permute(0,2,1).reshape(-1,1)
