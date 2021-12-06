@@ -20,11 +20,22 @@ Audio samples are available [here](http://www.kecl.ntt.co.jp/people/kameoka.hiro
 
 #### Dataset
 
-1. Setup your training dataset. The data structure should look like:
+1. Setup your training and test sets. The data structure should look like:
 
 
 ```bash
 /path/to/dataset/training
+├── spk_1
+│   ├── utt1.wav
+│   ...
+├── spk_2
+│   ├── utt1.wav
+│   ...
+└── spk_N
+    ├── utt1.wav
+    ...
+    
+/path/to/dataset/test
 ├── spk_1
 │   ├── utt1.wav
 │   ...
@@ -67,6 +78,7 @@ To run all stages for model training, execute:
   -s: Stage to start (0 or 1)
   #    Stages 0 and 1 correspond to feature extraction and model training, respectively.
   -e: Experiment name (default: "conv_wgan_exp1")
+  #    This name will be used at test time to specify which trained model to load.
   ```
 
 - Examples:

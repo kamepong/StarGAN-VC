@@ -25,7 +25,7 @@ class ConvGLU1D(nn.Module):
         super(ConvGLU1D, self).__init__()
         self.conv1 = nn.Conv1d(
             in_ch, out_ch*2, ks, stride=sd, padding=(ks-sd)//2)
-        nn.init.xavier_normal_(self.conv1.weight,gain=0.1)
+        #nn.init.xavier_normal_(self.conv1.weight,gain=0.1)
         if normtype=='BN':
             self.norm1 = nn.BatchNorm1d(out_ch*2)
         elif normtype=='IN':
@@ -55,7 +55,7 @@ class DeconvGLU1D(nn.Module):
         super(DeconvGLU1D, self).__init__()
         self.conv1 = nn.ConvTranspose1d(
             in_ch, out_ch*2, ks, stride=sd, padding=(ks-sd)//2)
-        nn.init.xavier_normal_(self.conv1.weight,gain=0.1)
+        #nn.init.xavier_normal_(self.conv1.weight,gain=0.1)
         if normtype=='BN':
             self.norm1 = nn.BatchNorm1d(out_ch*2)            
         elif normtype=='IN':
