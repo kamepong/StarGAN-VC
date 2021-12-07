@@ -31,12 +31,10 @@ out_dir="./out/${dataset_name}"
 model_dir="./model/${dataset_name}"
 vocoder_dir="${vocoder}/egs/arctic_4spk_flen64ms_fshift8ms/voc1"
 
-if [[ ${vocoder} = "pwg" ]]; then
-	vocoder_ver="parallel_wavegan.v1"
-elif
-	[[ ${vocoder} = "hifigan" ]]; then
-	vocoder_ver="hifigan.v1"
-fi
+case ${vocoder} in
+	"pwg" ) vocoder_ver="parallel_wavegan.v1" ;;
+	"hifigan" ) vocoder_ver="hifigan.v1" ;;
+esac
 
 python convert.py -g ${gpu} \
 	--input ${db_dir} \
