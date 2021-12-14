@@ -98,8 +98,8 @@ def main():
     parser.add_argument('--checkpoint', '-ckpt', type=int, default=0, help='model checkpoint to load (0 indicates the newest model)')
     parser.add_argument('--experiment_name', '-exp', default='experiment1', type=str, help='experiment name')
     parser.add_argument('--vocoder', '-voc', default='hifigan.v1', type=str,
-                        help='neural vocoder type name (e.g., hifigan.v1, hifigan.v2)')
-    parser.add_argument('--voc_dir', '-vdir', type=str, default='hifigan/egs/arctic_4spk_flen64ms_fshift8ms/voc1', 
+                        help='neural vocoder type name (e.g., hifigan.v1, hifigan.v2, parallel_wavegan.v1)')
+    parser.add_argument('--voc_dir', '-vdir', type=str, default='pwg/egs/arctic_4spk_flen64ms_fshift8ms/voc1', 
                         help='directory of trained neural vocoder')
     args = parser.parse_args()
 
