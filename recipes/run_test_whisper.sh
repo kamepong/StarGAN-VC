@@ -3,15 +3,15 @@
 # Copyright 2021 Hirokazu Kameoka
 # 
 # Usage:
-# ./run_test_arctic_4spk.sh [-g gpu] [-e exp_name] [-c checkpoint] [-v vocoder_type]
+# ./run_test_whisper.sh [-g gpu] [-e exp_name] [-c checkpoint] [-v vocoder_type]
 # Options:
 #     -g: GPU device#  
 #     -e: Experiment name (e.g., "conv_exp1")
 #     -c: Model checkpoint to load (0 indicates the newest model)
 #     -v: Vocoder type ("hifigan.v1" or "parallel_wavegan.v1")
 
-db_dir="/misc/raid58/kameoka.hirokazu/db/arctic/wav/test"
-dataset_name="arctic_4spk"
+db_dir="/misc/raid58/kameoka.hirokazu/db/ATR503Seki/test"
+dataset_name="whisper"
 gpu=0
 checkpoint=0
 vocoder_type="hifigan.v1"
@@ -37,7 +37,7 @@ dconf_path="./dump/${dataset_name}/data_config.json"
 stat_path="./dump/${dataset_name}/stat.pkl"
 out_dir="./out/${dataset_name}"
 model_dir="./model/${dataset_name}"
-vocoder_dir="pwg/egs/arctic_4spk_flen64ms_fshift8ms/voc1"
+vocoder_dir="pwg/egs/ATR_all+seki_flen64ms_fshift8ms/voc1"
 
 python convert.py -g ${gpu} \
 	--input ${db_dir} \
@@ -46,6 +46,6 @@ python convert.py -g ${gpu} \
 	--out ${out_dir} \
 	--model_rootdir ${model_dir} \
 	--experiment_name ${exp_name} \
-	--vocoder ${vocoder_type} \
 	--voc_dir ${vocoder_dir} \
+	--vocoder ${vocoder_type} \
 	--checkpoint ${checkpoint}

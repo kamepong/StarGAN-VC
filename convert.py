@@ -18,10 +18,9 @@ import net
 from extract_features import logmelfilterbank
 
 import sys
-sys.path.append(os.path.abspath("hifigan"))
-
-from hifigan.parallel_wavegan.utils import load_model
-from hifigan.parallel_wavegan.utils import read_hdf5
+sys.path.append(os.path.abspath("pwg"))
+from pwg.parallel_wavegan.utils import load_model
+from pwg.parallel_wavegan.utils import read_hdf5
 
 def audio_transform(wav_filepath, scaler, kwargs, device):
 
@@ -159,11 +158,11 @@ def main():
         if path is not None:
             model_checkpoint = torch.load(path, map_location=device)
             models[tag].load_state_dict(model_checkpoint['model_state_dict'])
-            print('{}: {}'.format(tag, mfilename))
+            print('{}: {}'.format(tag, os.path.abspath(path)))
 
     for tag in ['gen', 'dis']:
-        models[tag].to(device).eval()
-        #models[tag].to(device).train(mode=True)
+        #models[tag].to(device).eval()
+        models[tag].to(device).train(mode=True)
 
     # Set up nv
     vocoder = args.vocoder
@@ -174,8 +173,7 @@ def main():
     nv_checkpoint = os.path.join(voc_dir,'exp',
                                   'train_nodev_all_{}'.format(vocoder),
                                   checkpointlist[-1]) # Find and use the newest checkpoint model.
-    print('vocoder type: {}'.format(vocoder))
-    print('checkpoint  : {}'.format(checkpointlist[-1]))
+    print('vocoder: {}'.format(os.path.abspath(nv_checkpoint)))
     
     with open(voc_yaml_path) as f:
         nv_config = yaml.load(f, Loader=yaml.Loader)
